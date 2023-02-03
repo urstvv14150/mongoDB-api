@@ -1,7 +1,7 @@
 const {Users, Articles} = require('../models/model')
 const jwt = require('jsonwebtoken')
 
-require('dotenv').config({path: './config.env'})
+require('dotenv').config()
 // for process.env.secret_key
 
 async function register(req, res) {
