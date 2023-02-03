@@ -1,6 +1,9 @@
 const {Users, Articles} = require('../models/model')
 const jwt = require('jsonwebtoken')
 
+require("dotenv").config();
+// for process.env.secret_key
+
 async function register(req, res) {
   try {
     if(!req.body) return res.status(400).json("Post Data is invalid")
@@ -12,7 +15,7 @@ async function register(req, res) {
     await user.save(user)
     res.json({body: {email, password} ,status: 200, message: "register successfully"})    
   }catch(e) {
-    res.json({status:400, message: `user register invalid`})
+    res.json({status:400, message: `user register invalid ${e.message}`})
     console.log(e)
   }
   
@@ -23,12 +26,13 @@ async function login(req, res) {
     const {email, password} = req.body
     const check = await Users.findOne({email})    
     if(check.password === password) {
+      console.log(process.env.secret_key)
       const payload = {email, password}
       const token = jwt.sign({payload, exp: 60*60},  process.env.secret_key)
-      res.json({body: {email, token} ,status: 200, message: "login successfully"}) 
+      res.json({body: {email, token} ,status: 200, message: `login successfully`}) 
     }
   }catch(e) {
-    res.json({status: 400, message: e.message})
+    res.json({status: 400, message: `login failed, ${e.message}`})
     console.log(e)
   }  
 }
@@ -38,7 +42,7 @@ async function getAllArticles(req, res) {
     const data = await Articles.find()
     res.json({body: data ,status: 200, message: "get articles successfully"}) 
   }catch(e) {
-    res.json({status: 400, message: "get articles failed"})
+    res.json({status: 400, message: `get articles failed, ${e.message}`})
     console.log(e)
   } 
 }
