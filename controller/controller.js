@@ -53,7 +53,7 @@ async function addArticle(req, res) {
     const article = await new Articles({
       title, type, content, author
     })
-    user.save(err => {
+    article.save(err => {
       if(err) return res.status(400).send("Error add user")
       res.status(200)
     })  

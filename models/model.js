@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const moment = require('moment')
 
 const users_model = new Schema({
   email: {type: String, required: true, default: ""},
@@ -13,8 +14,8 @@ const articles_model = new Schema({
   type: {type: String, required: true, default: "未分類"},
   content: {type: String, default: ""},
   auther: {type: String, default: "admin"},
-  createdAt: {type: Date, default: () => Date.now(), immutable: true},
-  updatedAt: {type: Date, default: () => Date.now()}
+  createdAt: {type: Date, default: () => moment().format(), immutable: true},
+  updatedAt: {type: Date, default: () => moment().format()}
 })
 
 const Users = mongoose.model('users', users_model)
