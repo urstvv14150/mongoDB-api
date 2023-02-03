@@ -21,15 +21,14 @@ async function register(req, res) {
 async function login(req, res) {
   try {
     const {email, password} = req.body
-
-    const check = await Users.findOne({email})
+    const check = await Users.findOne({email})    
     if(check.password === password) {
       const payload = {email, password}
       const token = jwt.sign({payload, exp: 60*60},  process.env.secret_key)
       res.json({body: {email, token} ,status: 200, message: "login successfully"}) 
     }
   }catch(e) {
-    res.json({status: 400, message: "user login failed"})
+    res.json({status: 400, message: e.message})
     console.log(e)
   }  
 }
