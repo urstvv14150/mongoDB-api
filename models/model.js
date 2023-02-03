@@ -5,8 +5,8 @@ const moment = require('moment')
 const users_model = new Schema({
   email: {type: String, required: true, default: ""},
   password: {type: String, required: true, default: ""},
-  createdAt: {type: Date, default: () => Date.now(), immutable: true},
-  updatedAt: {type: Date, default: () => Date.now()}
+  createdAt: {type: Date, default: () => moment().format(), immutable: true},
+  updatedAt: {type: Date, default: () => moment().format()}
 })
 
 const articles_model = new Schema({  

@@ -9,13 +9,10 @@ async function register(req, res) {
       email: email,
       password: password
     })
-    user.save(err => {
-      if(err) return res.status(400).json({message: `Error creating user ${err}`})
-      res.status(200)
-      
-    })
+    user.save(user)
+    res.json({body: {email, password} ,status: 200, message: "register successfully"})    
   }catch(e) {
-    res.status(400).json({message: `user register invalid`})
+    res.json({status:400, message: `user register invalid`})
     console.log(e)
   }
   
@@ -29,10 +26,10 @@ async function login(req, res) {
     if(check.password === password) {
       const payload = {email, password}
       const token = jwt.sign({payload, exp: 60*60},  process.env.secret_key)
-      res.json({email, token}).status(200)
+      res.json({body: {email, token} ,status: 200, message: "login successfully"}) 
     }
   }catch(e) {
-    res.status(400).json({message: `email or password invalid`})
+    res.json({status: 400, message: "user login failed"})
     console.log(e)
   }  
 }
@@ -40,9 +37,9 @@ async function login(req, res) {
 async function getAllArticles(req, res) {
   try {
     const data = await Articles.find()
-    res.json(data).status(200)
+    res.json({body: data ,status: 200, message: "get articles successfully"}) 
   }catch(e) {
-    res.status(400).send("fail to get articles")
+    res.json({status: 400, message: "get articles failed"})
     console.log(e)
   } 
 }
@@ -53,12 +50,10 @@ async function addArticle(req, res) {
     const article = await new Articles({
       title, type, content, author
     })
-    article.save(err => {
-      if(err) return res.status(400).send("Error add user")
-      res.status(200)
-    })  
+    article.save(article)
+    res.json({body: article, status: 200, message: "add articles successfully"}) 
   }catch(e) {
-    res.status(400).send("fail to add article")
+    res.json({status: 400, message: "add articles failed"})
     console.log(e)
   }
  
