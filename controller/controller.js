@@ -9,7 +9,7 @@ async function register(req, res) {
       email: email,
       password: password
     })
-    user.save(user)
+    await user.save(user)
     res.json({body: {email, password} ,status: 200, message: "register successfully"})    
   }catch(e) {
     res.json({status:400, message: `user register invalid`})
@@ -50,7 +50,7 @@ async function addArticle(req, res) {
     const article = await new Articles({
       title, type, content, author
     })
-    article.save(article)
+    await article.save(article)
     res.json({body: article, status: 200, message: "add articles successfully"}) 
   }catch(e) {
     res.json({status: 400, message: "add articles failed"})
