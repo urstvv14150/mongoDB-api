@@ -28,7 +28,7 @@ async function login(req, res) {
     if(check.password === password) {
       console.log(process.env.secret_key)
       const payload = {email, password}
-      const token = jwt.sign({payload, exp: 60*60},  process.env.secret_key)
+      const token = jwt.sign({payload, expiresIn: 60*60},  process.env.secret_key)
       res.json({body: {email, token} ,status: 200, message: `login successfully`}) 
     }
   }catch(e) {
