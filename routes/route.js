@@ -7,6 +7,9 @@ routes.route('/api/user/register')
 routes.route('/api/user/login')
   .post(controller.login)
 
+routes.route('/api/users/all')
+  .get(controller.getAllUsers)
+
 routes.route('/api/articles/all')
   .get(controller.getAllArticles)
 

@@ -37,6 +37,16 @@ async function login(req, res) {
   }  
 }
 
+async function getAllUsers(req, res) {
+  try {
+    const data = await User.find()
+    res.json({body: data ,status: 200, message: "get users successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `get users failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
 async function getAllArticles(req, res) {
   try {
     const data = await Articles.find()
@@ -66,6 +76,7 @@ async function addArticle(req, res) {
 module.exports = {
   register,
   login,
+  getAllUsers,
   getAllArticles,
   addArticle
 }
