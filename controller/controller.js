@@ -39,7 +39,7 @@ async function login(req, res) {
 
 async function getAllUsers(req, res) {
   try {
-    const data = await User.find()
+    const data = await Users.find()
     res.json({body: data ,status: 200, message: "get users successfully"}) 
   }catch(e) {
     res.json({status: 400, message: `get users failed, ${e.message}`})
