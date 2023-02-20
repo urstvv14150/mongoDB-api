@@ -10,8 +10,14 @@ routes.route('/api/user/login')
 routes.route('/api/users/all')
   .get(controller.getAllUsers)
 
+routes.route('/api/user/:id')
+  .get(controller.getUserById)
+
 routes.route('/api/articles/all')
   .get(controller.getAllArticles)
+
+routes.route('/api/article/:id')
+  .get(controller.getArticleById)
 
 routes.route('/api/article/add')
   .get(controller.addArticle)

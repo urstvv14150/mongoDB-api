@@ -47,12 +47,32 @@ async function getAllUsers(req, res) {
   }  
 }
 
+async function getUserById(req, res) {
+  try {
+    const data = await Users.findById(req.params.id)
+    res.json({body: data ,status: 200, message: "get user by id successfully"}) 
+  }catch(e) {
+    res.json({status: 404, message: `get user by id failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
 async function getAllArticles(req, res) {
   try {
     const data = await Articles.find()
     res.json({body: data ,status: 200, message: "get articles successfully"}) 
   }catch(e) {
     res.json({status: 400, message: `get articles failed, ${e.message}`})
+    console.log(e)
+  } 
+}
+
+async function getArticleById(req, res) {
+  try {
+    const data = await Articles.findById(req.params.id)
+    res.json({body: data ,status: 200, message: "get article by id successfully"}) 
+  }catch(e) {
+    res.json({status: 404, message: `get article by id failed, ${e.message}`})
     console.log(e)
   } 
 }
@@ -77,6 +97,8 @@ module.exports = {
   register,
   login,
   getAllUsers,
+  getUserById,
   getAllArticles,
+  getArticleById,
   addArticle
 }
