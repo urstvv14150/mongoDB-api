@@ -57,6 +57,19 @@ async function getUserById(req, res) {
   }  
 }
 
+async function addUser(req, res) {
+  try {    
+    const data = await Users.create({ 
+      email: req.body.email,
+      password: req.body.password
+    })    
+    res.json({body: data ,status: 200, message: "edit user by id successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `edit user by id failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
 async function editUserById(req, res) {
   try {    
     const data = await Users.updateOne({_id: req.params.id},{ 
@@ -122,6 +135,7 @@ module.exports = {
   login,
   getAllUsers,
   getUserById,
+  addUser,
   editUserById,
   deleteUserById,
   getAllArticles,
