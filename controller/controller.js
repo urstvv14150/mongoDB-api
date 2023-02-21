@@ -57,6 +57,30 @@ async function getUserById(req, res) {
   }  
 }
 
+async function editUserById(req, res) {
+  try {
+    const data = await Users.where({_id: req.params.id}).update({
+      email: req.params.email,
+      password: req.params.password,
+      updatedAt: new Date()
+    })
+    res.json({body: data ,status: 200, message: "edit user by id successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `edit user by id failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
+async function deleteUserById(req, res) {
+  try {
+    const data = await Users.deleteOne({_id: req.params.id})
+    res.json({body: data ,status: 200, message: "delete user by id successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `delete user by id failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
 async function getAllArticles(req, res) {
   try {
     const data = await Articles.find()
@@ -98,6 +122,8 @@ module.exports = {
   login,
   getAllUsers,
   getUserById,
+  editUserById,
+  deleteUserById,
   getAllArticles,
   getArticleById,
   addArticle

@@ -13,6 +13,12 @@ routes.route('/api/users/all')
 routes.route('/api/user/:id')
   .get(controller.getUserById)
 
+routes.route('/api/user/edit/:id')
+  .put(controller.editUserById)
+
+routes.route('/api/user/delete/:id')
+  .delete(controller.deleteUserById)
+
 routes.route('/api/articles/all')
   .get(controller.getAllArticles)
 
