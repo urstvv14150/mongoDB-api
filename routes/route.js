@@ -14,7 +14,7 @@ routes.route('/api/user/:id')
   .get(controller.getUserById)
 
 routes.route('/api/user/add')
-  .put(controller.addUser)
+  .post(controller.addUser)
 
 routes.route('/api/user/edit/:id')
   .put(controller.editUserById)
