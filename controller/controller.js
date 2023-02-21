@@ -58,12 +58,12 @@ async function getUserById(req, res) {
 }
 
 async function editUserById(req, res) {
-  try {
-    const data = await Users.where({_id: req.params.id}).update({
-      email: req.params.email,
-      password: req.params.password,
-      updatedAt: new Date()
+  try {    
+    const data = await Users.updateOne({_id: req.params.id},{ 
+      email: req.body.email,
+      password: req.body.password
     })
+    console.log(req.body)
     res.json({body: data ,status: 200, message: "edit user by id successfully"}) 
   }catch(e) {
     res.json({status: 400, message: `edit user by id failed, ${e.message}`})
