@@ -94,6 +94,18 @@ async function deleteUserById(req, res) {
   }  
 }
 
+async function deleteUsersMany(req, res) {
+  try {
+    const where = req.body.map(row => ({_id: row}))
+    console.log(...where)
+    const data = await Users.deleteMany(...where)
+    res.json({body: data ,status: 200, message: "delete users many successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `delete users many failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
 async function getAllArticles(req, res) {
   try {
     const data = await Articles.find()
@@ -138,6 +150,7 @@ module.exports = {
   addUser,
   editUserById,
   deleteUserById,
+  deleteUsersMany,
   getAllArticles,
   getArticleById,
   addArticle

@@ -22,6 +22,9 @@ routes.route('/api/user/edit/:id')
 routes.route('/api/user/delete/:id')
   .delete(controller.deleteUserById)
 
+routes.route('/api/users/delete/many')
+  .delete(controller.deleteUsersMany)
+
 routes.route('/api/articles/all')
   .get(controller.getAllArticles)
 
