@@ -96,9 +96,8 @@ async function deleteUserById(req, res) {
 
 async function deleteUsersMany(req, res) {
   try {
-    const where = req.body.map(row => ({_id: row}))
-    console.log(...where)
-    const data = await Users.deleteMany(...where)
+    const where = {"_id": {$in: req.body}}    
+    const data = await Users.deleteMany(where)
     res.json({body: data ,status: 200, message: "delete users many successfully"}) 
   }catch(e) {
     res.json({status: 400, message: `delete users many failed, ${e.message}`})
