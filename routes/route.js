@@ -32,6 +32,6 @@ routes.route('/api/article/:id')
   .get(controller.getArticleById)
 
 routes.route('/api/article/add')
-  .get(controller.addArticle)
+  .post(controller.addArticle)
 
 module.exports = routes

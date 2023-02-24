@@ -127,9 +127,9 @@ async function getArticleById(req, res) {
 
 async function addArticle(req, res) {
   try {
-    let {title, type, content, author} = req.body
+    let {active, title, type, content, author} = req.body
     const article = await new Articles({
-      title, type, content, author
+     active, title, type, content, author
     })
     await article.save(article)
     res.json({body: article, status: 200, message: "add articles successfully"}) 

@@ -9,11 +9,12 @@ const users_model = new Schema({
   updatedAt: {type: Date, default: () => moment().format()}
 })
 
-const articles_model = new Schema({  
+const articles_model = new Schema({
+  active: {type: Boolean, default:  false},  
   title: {type: String, default: "新增文章"},
   type: {type: String, required: true, default: "未分類"},
   content: {type: String, default: ""},
-  auther: {type: String, default: "admin"},
+  author: {type: String, default: "admin"},
   createdAt: {type: Date, default: () => moment().format(), immutable: true},
   updatedAt: {type: Date, default: () => moment().format()}
 })
