@@ -12,7 +12,7 @@ const users_model = new Schema({
 const articles_model = new Schema({
   active: {type: Boolean, default:  false},  
   title: {type: String, default: "新增文章"},
-  type: {type: String, required: true, default: "未分類"},
+  type: {type: Array},
   content: {type: String, default: ""},
   author: {type: String, default: "admin"},
   createdAt: {type: Date, default: () => moment().format(), immutable: true},
