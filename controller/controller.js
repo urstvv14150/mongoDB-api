@@ -140,6 +140,44 @@ async function addArticle(req, res) {
  
 }
 
+async function editArticleById(req, res) {
+  try {    
+    const data = await Articles.updateOne({_id: req.params.id},{ 
+      type: req.body.type,
+      active: req.body.active,
+      title: req.body.title,
+      content: req.body.content,
+      updatedAt: new Date()
+    })
+    console.log(req.body)
+    res.json({body: data ,status: 200, message: "edit article by id successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `edit Article by id failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
+async function deleteArticleById(req, res) {
+  try {
+    const data = await Articles.deleteOne({_id: req.params.id})
+    res.json({body: data ,status: 200, message: "delete article by id successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `delete article by id failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
+async function deleteArticlesMany(req, res) {
+  try {
+    const where = {"_id": {$in: req.body}}    
+    const data = await Articles.deleteMany(where)
+    res.json({body: data ,status: 200, message: "delete articles many successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `delete articles many failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
 
 module.exports = {
   register,
@@ -152,5 +190,8 @@ module.exports = {
   deleteUsersMany,
   getAllArticles,
   getArticleById,
-  addArticle
+  addArticle,
+  editArticleById,
+  deleteArticleById,
+  deleteArticlesMany
 }

@@ -34,4 +34,13 @@ routes.route('/api/article/:id')
 routes.route('/api/article/add')
   .post(controller.addArticle)
 
+routes.route('/api/article/edit/:id')
+  .put(controller.editArticleById)
+
+routes.route('/api/article/delete/:id')
+  .delete(controller.deleteArticleById)
+
+routes.route('/api/articles/delete/many')
+  .delete(controller.deleteArticlesMany)
+  
 module.exports = routes
