@@ -19,11 +19,13 @@ routes.route('/api/user/add')
 routes.route('/api/user/edit/:id')
   .put(controller.editUserById)
 
+routes.route('/api/users/delete/many')
+  .delete(controller.deleteUsersMany)
+
 routes.route('/api/user/delete/:id')
   .delete(controller.deleteUserById)
 
-routes.route('/api/users/delete/many')
-  .delete(controller.deleteUsersMany)
+
 
 routes.route('/api/articles/all')
   .get(controller.getAllArticles)
@@ -37,11 +39,13 @@ routes.route('/api/article/add')
 routes.route('/api/article/edit/:id')
   .put(controller.editArticleById)
 
+routes.route('/api/articles/delete/many')
+  .delete(controller.deleteArticlesMany)
+
 routes.route('/api/article/delete/:id')
   .delete(controller.deleteArticleById)
 
-routes.route('/api/articles/delete/many')
-  .delete(controller.deleteArticlesMany)
+
 
 routes.route('/api/articleType/all')
   .get(controller.getAllArticleType)
@@ -55,10 +59,13 @@ routes.route('/api/articleType/add')
 routes.route('/api/articleType/edit/:id')
   .put(controller.editArticleTypeById)
 
-routes.route('/api/articleType/delete/:id')
-  .delete(controller.deleteArticleTypeById)
-
 routes.route('/api/articleType/delete/many')
   .delete(controller.deleteArticleTypeMany)
+
+routes.route('/api/articleType/delete/:id')
+  .delete(controller.deleteArticleTypeById)
   
+
+//:id route 必須放在後面
+
 module.exports = routes
