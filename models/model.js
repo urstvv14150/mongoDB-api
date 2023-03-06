@@ -21,7 +21,7 @@ const articles_model = new Schema({
 
 const articleType_model = new Schema({
   active: {type: Boolean, default:  false},
-  type: {type: String, required},
+  type: {type: String, required: true},
   author: {type: String},
   createdAt: {type: Date, default: () => moment().format(), immutable: true},
   updatedAt: {type: Date, default: () => moment().format()}
