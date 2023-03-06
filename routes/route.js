@@ -46,6 +46,9 @@ routes.route('/api/articles/delete/many')
 routes.route('/api/articleType/all')
   .get(controller.getAllArticleType)
 
+routes.route('/api/articleType/:id')
+  .get(controller.getArticleTypeById)
+
 routes.route('/api/articleType/add')
   .post(controller.getAllArticleType)
 
