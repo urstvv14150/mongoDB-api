@@ -200,9 +200,9 @@ async function getArticleTypeById(req, res) {
 
 async function addArticleType(req, res) {
   try {
-    let {type, author} = req.body
+    let {active, type, author} = req.body
     const articleType = await new ArticleType({
-     type, author
+     active, type, author
     })
     await articleType.save(articleType)
     res.json({body: article, status: 200, message: "add articleType successfully"}) 
@@ -216,8 +216,10 @@ async function addArticleType(req, res) {
 async function editArticleTypeById(req, res) {
   try {    
     const data = await Articles.updateOne({_id: req.params.id},{ 
+      active: req.body.active,
       type: req.body.type,
-      author: req.body.author
+      author: req.body.author,
+      updatedAt: new Date()
     })    
     res.json({body: data ,status: 200, message: "edit articleType by id successfully"}) 
   }catch(e) {
