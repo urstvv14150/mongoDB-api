@@ -19,10 +19,17 @@ const articles_model = new Schema({
   updatedAt: {type: Date, default: () => moment().format()}
 })
 
+const articleType_model = new Schema({
+  type: {type: String, required},
+  author: {type: String}
+})
+
 const Users = mongoose.model('users', users_model)
 const Articles = mongoose.model('articles', articles_model)
+const ArticleType = mongoose.model('articleType', articleType_model)
 
 module.exports = {
   Users,
-  Articles
+  Articles,
+  ArticleType
 }

@@ -1,4 +1,4 @@
-const {Users, Articles} = require('../models/model')
+const {Users, Articles, ArticleType} = require('../models/model')
 const jwt = require('jsonwebtoken')
 
 require('dotenv').config()
@@ -178,6 +178,65 @@ async function deleteArticlesMany(req, res) {
   }  
 }
 
+async function getAllArticleType(req, res) {
+  try {
+    const data = await ArticleType.find()
+    res.json({body: data ,status: 200, message: "get articleType successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `get articleType failed, ${e.message}`})
+    console.log(e)
+  } 
+}
+
+async function addArticleType(req, res) {
+  try {
+    let {type, author} = req.body
+    const articleType = await new ArticleType({
+     type, author
+    })
+    await articleType.save(articleType)
+    res.json({body: article, status: 200, message: "add articleType successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: "add articles failed"})
+    console.log(e)
+  }
+ 
+}
+
+async function editArticleTypeById(req, res) {
+  try {    
+    const data = await Articles.updateOne({_id: req.params.id},{ 
+      type: req.body.type,
+      author: req.body.author
+    })    
+    res.json({body: data ,status: 200, message: "edit articleType by id successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `edit articleType by id failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
+async function deleteArticleTypeById(req, res) {
+  try {
+    const data = await Articles.deleteOne({_id: req.params.id})
+    res.json({body: data ,status: 200, message: "delete articleType by id successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `delete articleType by id failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
+async function deleteArticleTypeMany(req, res) {
+  try {
+    const where = {"_id": {$in: req.body}}    
+    const data = await Articles.deleteMany(where)
+    res.json({body: data ,status: 200, message: "delete articleType many successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `delete articleType many failed, ${e.message}`})
+    console.log(e)
+  }  
+}
+
 
 module.exports = {
   register,
@@ -193,5 +252,10 @@ module.exports = {
   addArticle,
   editArticleById,
   deleteArticleById,
-  deleteArticlesMany
+  deleteArticlesMany,
+  getAllArticleType,
+  addArticleType,
+  editArticleTypeById,
+  deleteArticleTypeById,
+  deleteArticleTypeMany
 }

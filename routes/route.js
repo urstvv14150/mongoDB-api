@@ -42,5 +42,23 @@ routes.route('/api/article/delete/:id')
 
 routes.route('/api/articles/delete/many')
   .delete(controller.deleteArticlesMany)
+
+routes.route('/api/articleType/all')
+  .get(controller.getAllArticleType)
+
+routes.route('/api/articleType/add')
+  .post(controller.getAllArticleType)
+
+routes.route('/api/articleType/all')
+  .get(controller.getAllArticleType)
+
+routes.route('/api/articleType/edit/:id')
+  .put(controller.editArticleTypeById)
+
+routes.route('/api/articleType/delete/:id')
+  .delete(controller.deleteArticleTypeById)
+
+routes.route('/api/articleType/delete/many')
+  .delete(controller.deleteArticleTypeMany)
   
 module.exports = routes
