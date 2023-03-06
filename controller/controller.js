@@ -188,6 +188,16 @@ async function getAllArticleType(req, res) {
   } 
 }
 
+async function getArticleTypeById(req, res) {
+  try {
+    const data = await ArticleType.findById(req.params.id)
+    res.json({body: data ,status: 200, message: "get articleType by id successfully"}) 
+  }catch(e) {
+    res.json({status: 404, message: `get articleType by id failed, ${e.message}`})
+    console.log(e)
+  } 
+}
+
 async function addArticleType(req, res) {
   try {
     let {type, author} = req.body
@@ -254,6 +264,7 @@ module.exports = {
   deleteArticleById,
   deleteArticlesMany,
   getAllArticleType,
+  getArticleTypeById,
   addArticleType,
   editArticleTypeById,
   deleteArticleTypeById,
