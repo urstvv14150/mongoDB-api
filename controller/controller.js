@@ -107,7 +107,7 @@ async function deleteUsersMany(req, res) {
 
 async function getAllArticles(req, res) {
   try {
-    const data = await Articles.find()
+    const data = await Articles.find({active: true})
     res.json({body: data ,status: 200, message: "get articles successfully"}) 
   }catch(e) {
     res.json({status: 400, message: `get articles failed, ${e.message}`})
@@ -180,7 +180,7 @@ async function deleteArticlesMany(req, res) {
 
 async function getAllArticleType(req, res) {
   try {
-    const data = await ArticleType.find()
+    const data = await ArticleType.find({active: true})
     res.json({body: data ,status: 200, message: "get articleType successfully"}) 
   }catch(e) {
     res.json({status: 400, message: `get articleType failed, ${e.message}`})
