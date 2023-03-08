@@ -30,6 +30,9 @@ routes.route('/api/user/delete/:id')
 routes.route('/api/articles/all')
   .get(controller.getAllArticles)
 
+routes.route('/api/articles/active/all')
+  .get(controller.getAllActiveArticles)
+
 routes.route('/api/article/:id')
   .get(controller.getArticleById)
 
@@ -49,6 +52,9 @@ routes.route('/api/article/delete/:id')
 
 routes.route('/api/articleType/all')
   .get(controller.getAllArticleType)
+
+routes.route('/api/articleType/Active/all')
+  .get(controller.getAllActiveArticleType)
 
 routes.route('/api/articleType/:id')
   .get(controller.getArticleTypeById)

@@ -107,6 +107,16 @@ async function deleteUsersMany(req, res) {
 
 async function getAllArticles(req, res) {
   try {
+    const data = await Articles.find()
+    res.json({body: data ,status: 200, message: "get articles successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `get articles failed, ${e.message}`})
+    console.log(e)
+  } 
+}
+
+async function getAllActiveArticles(req, res) {
+  try {
     const data = await Articles.find({active: true})
     res.json({body: data ,status: 200, message: "get articles successfully"}) 
   }catch(e) {
@@ -179,6 +189,16 @@ async function deleteArticlesMany(req, res) {
 }
 
 async function getAllArticleType(req, res) {
+  try {
+    const data = await ArticleType.find()
+    res.json({body: data ,status: 200, message: "get articleType successfully"}) 
+  }catch(e) {
+    res.json({status: 400, message: `get articleType failed, ${e.message}`})
+    console.log(e)
+  } 
+}
+
+async function getAllActiveArticleType(req, res) {
   try {
     const data = await ArticleType.find({active: true})
     res.json({body: data ,status: 200, message: "get articleType successfully"}) 
@@ -260,12 +280,14 @@ module.exports = {
   deleteUserById,
   deleteUsersMany,
   getAllArticles,
+  getAllActiveArticles,
   getArticleById,
   addArticle,
   editArticleById,
   deleteArticleById,
   deleteArticlesMany,
   getAllArticleType,
+  getAllActiveArticleType,
   getArticleTypeById,
   addArticleType,
   editArticleTypeById,
