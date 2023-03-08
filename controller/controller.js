@@ -205,9 +205,9 @@ async function addArticleType(req, res) {
      active, type, author
     })
     await articleType.save()
-    res.json({body: article, status: 200, message: "add articleType successfully"}) 
+    res.json({body: articleType, status: 200, message: "add articleType successfully"}) 
   }catch(e) {
-    res.json({status: 400, message: "add articleType failed"})
+    res.json({status: 400, message: `add articleType failed, ${e.message}`})
     console.log(e)
   }
  
