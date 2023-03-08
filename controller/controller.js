@@ -215,7 +215,7 @@ async function addArticleType(req, res) {
 
 async function editArticleTypeById(req, res) {
   try {    
-    const data = await Articles.updateOne({_id: req.params.id},{ 
+    const data = await ArticleType.updateOne({_id: req.params.id},{ 
       active: req.body.active,
       type: req.body.type,
       author: req.body.author,
@@ -230,7 +230,7 @@ async function editArticleTypeById(req, res) {
 
 async function deleteArticleTypeById(req, res) {
   try {
-    const data = await Articles.deleteOne({_id: req.params.id})
+    const data = await ArticleType.deleteOne({_id: req.params.id})
     res.json({body: data ,status: 200, message: "delete articleType by id successfully"}) 
   }catch(e) {
     res.json({status: 400, message: `delete articleType by id failed, ${e.message}`})
@@ -241,7 +241,7 @@ async function deleteArticleTypeById(req, res) {
 async function deleteArticleTypeMany(req, res) {
   try {
     const where = {"_id": {$in: req.body}}    
-    const data = await Articles.deleteMany(where)
+    const data = await ArticleType.deleteMany(where)
     res.json({body: data ,status: 200, message: "delete articleType many successfully"}) 
   }catch(e) {
     res.json({status: 400, message: `delete articleType many failed, ${e.message}`})
