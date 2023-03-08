@@ -53,7 +53,7 @@ routes.route('/api/article/delete/:id')
 routes.route('/api/articleType/all')
   .get(controller.getAllArticleType)
 
-routes.route('/api/articleType/Active/all')
+routes.route('/api/articleType/active/all')
   .get(controller.getAllActiveArticleType)
 
 routes.route('/api/articleType/:id')
