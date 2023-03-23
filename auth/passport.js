@@ -8,7 +8,7 @@ passport.use(new JwtStrategy(
   {
     jwtFromRequest: ExtractJwt.fromExtractors([
     (req) => {
-      console.log(req)
+      console.log(req.cookies)
       return req.cookies["_auth"]
     }
   ]),
