@@ -4,15 +4,15 @@ const JwtStrategy = require('passport-jwt').Strategy,
 
 const { User } = require('../models/model')
 
-let opts = {}
-opts.jwtFromRequest = ExtractJwt.fromExtractors([
-  (req) => {
-    return req.cookies["_auth"]
-  }
-]);
-opts.secretOrKey = process.env.secret_key;
-
-passport.use(new JwtStrategy(opts, 
+passport.use(new JwtStrategy(
+  {
+    jwtFromRequest: ExtractJwt.fromExtractors([
+    (req) => {
+      console.log(req)
+      return req.cookies["_auth"]
+    }
+  ]),
+  secretOrKey: process.env.secret_key}, 
   function(jwt_payload, done) {
     User.findOne({id: jwt_payload._id}, function(err, user) {
         if (err) {
