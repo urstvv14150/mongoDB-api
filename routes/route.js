@@ -1,5 +1,7 @@
 const routes = require('express').Router()
 const controller = require('../controller/controller')
+const passport = require('passport')
+
 
 routes.route('/api/user/register')
   .post(controller.register)
@@ -8,22 +10,22 @@ routes.route('/api/user/login')
   .post(controller.login)
 
 routes.route('/api/users/all')
-  .get(controller.getAllUsers)
+  .get(passport.authenticate("jwt", {session: false}), controller.getAllUsers)
 
 routes.route('/api/user/:id')
-  .get(controller.getUserById)
+  .get(passport.authenticate("jwt", {session: false}), controller.getUserById)
 
 routes.route('/api/user/add')
-  .post(controller.addUser)
+  .post(passport.authenticate("jwt", {session: false}), controller.addUser)
 
 routes.route('/api/user/edit/:id')
-  .put(controller.editUserById)
+  .put(passport.authenticate("jwt", {session: false}), controller.editUserById)
 
 routes.route('/api/users/delete/many')
-  .delete(controller.deleteUsersMany)
+  .delete(passport.authenticate("jwt", {session: false}), controller.deleteUsersMany)
 
 routes.route('/api/user/delete/:id')
-  .delete(controller.deleteUserById)
+  .delete(passport.authenticate("jwt", {session: false}), controller.deleteUserById)
 
 
 
@@ -70,7 +72,7 @@ routes.route('/api/articleType/delete/many')
 
 routes.route('/api/articleType/delete/:id')
   .delete(controller.deleteArticleTypeById)
-  
+
 
 //:id route 必須放在後面
 

@@ -4,6 +4,7 @@ const cors = require('cors')
 const routes = require('./routes/route')
 
 require('dotenv').config()
+require('./auth/passport')
 
 const PORT = process.env.PORT
 
