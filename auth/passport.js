@@ -6,13 +6,9 @@ const { User } = require('../models/model')
 
 passport.use(new JwtStrategy(
   {
-    jwtFromRequest: ExtractJwt.fromExtractors([
-    (req) => {
-      console.log(req.cookies)
-      return req.cookies["_auth"]
-    }
-  ]),
-  secretOrKey: process.env.secret_key}, 
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.secret_key
+  }, 
   function(jwt_payload, done) {
     User.findOne({id: jwt_payload._id}, function(err, user) {
         if (err) {
