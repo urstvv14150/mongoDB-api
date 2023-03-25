@@ -30,48 +30,48 @@ routes.route('/api/user/delete/:id')
 
 
 routes.route('/api/articles/all')
-  .get(controller.getAllArticles)
+  .get(passport.authenticate("jwt", {session: false}), controller.getAllArticles)
 
 routes.route('/api/articles/active/all')
   .get(controller.getAllActiveArticles)
 
 routes.route('/api/article/:id')
-  .get(controller.getArticleById)
+  .get(passport.authenticate("jwt", {session: false}), controller.getArticleById)
 
 routes.route('/api/article/add')
-  .post(controller.addArticle)
+  .post(passport.authenticate("jwt", {session: false}), controller.addArticle)
 
 routes.route('/api/article/edit/:id')
-  .put(controller.editArticleById)
+  .put(passport.authenticate("jwt", {session: false}), controller.editArticleById)
 
 routes.route('/api/articles/delete/many')
-  .delete(controller.deleteArticlesMany)
+  .delete(passport.authenticate("jwt", {session: false}), controller.deleteArticlesMany)
 
 routes.route('/api/article/delete/:id')
-  .delete(controller.deleteArticleById)
+  .delete(passport.authenticate("jwt", {session: false}), controller.deleteArticleById)
 
 
 
 routes.route('/api/articleType/all')
-  .get(controller.getAllArticleType)
+  .get(passport.authenticate("jwt", {session: false}), controller.getAllArticleType)
 
 routes.route('/api/articleType/active/all')
   .get(controller.getAllActiveArticleType)
 
 routes.route('/api/articleType/:id')
-  .get(controller.getArticleTypeById)
+  .get(passport.authenticate("jwt", {session: false}), controller.getArticleTypeById)
 
 routes.route('/api/articleType/add')
-  .post(controller.addArticleType)
+  .post(passport.authenticate("jwt", {session: false}), controller.addArticleType)
 
 routes.route('/api/articleType/edit/:id')
-  .put(controller.editArticleTypeById)
+  .put(passport.authenticate("jwt", {session: false}), controller.editArticleTypeById)
 
 routes.route('/api/articleType/delete/many')
-  .delete(controller.deleteArticleTypeMany)
+  .delete(passport.authenticate("jwt", {session: false}), controller.deleteArticleTypeMany)
 
 routes.route('/api/articleType/delete/:id')
-  .delete(controller.deleteArticleTypeById)
+  .delete(passport.authenticate("jwt", {session: false}), controller.deleteArticleTypeById)
 
 
 //:id route 必須放在後面
