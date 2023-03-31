@@ -9,7 +9,7 @@ routes.route('/api/user/register')
 routes.route('/api/user/login')
   .post(controller.login)
 
-router.route("/login/success")
+router.route("/api/googleLogin/success")
   .get(controller.googleAuthCheck)
 
 routes.route('/api/user/googleLogin')
