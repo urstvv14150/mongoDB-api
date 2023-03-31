@@ -10,7 +10,7 @@ routes.route('/api/user/login')
   .post(controller.login)
 
 router.route("/api/googleLogin/success")
-  .get(controller.googleAuthCheck)
+  .get(controller.googleAuthSuccess)
 
 routes.route('/api/user/googleLogin')
   .get(passport.authenticate('google', { scope: ['profile'] }))
