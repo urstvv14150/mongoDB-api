@@ -37,6 +37,10 @@ async function login(req, res) {
   }  
 }
 
+async function GoogleAuthFail(req, res) {
+  res.json({success: false, status: 401, message: `google auth failed`})
+}
+
 async function getAllUsers(req, res) {
   try {
     const data = await Users.find()
@@ -273,6 +277,7 @@ async function deleteArticleTypeMany(req, res) {
 module.exports = {
   register,
   login,
+  GoogleAuthFail,
   getAllUsers,
   getUserById,
   addUser,

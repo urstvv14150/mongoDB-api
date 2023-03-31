@@ -9,6 +9,12 @@ routes.route('/api/user/register')
 routes.route('/api/user/login')
   .post(controller.login)
 
+routes.route('/api/user/googleLogin')
+  .get(passport.authenticate('google', { scope: ['profile'] }))
+
+  routes.route('/auth/google/callback')
+  .get(passport.authenticate('google', { successRedirect: 'http://localhost:3000/', failureRedirect: controller.GoogleAuthFail }))
+
 routes.route('/api/users/all')
   .get(passport.authenticate("jwt", {session: false}), controller.getAllUsers)
 
