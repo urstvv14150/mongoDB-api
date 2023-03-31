@@ -9,6 +9,9 @@ routes.route('/api/user/register')
 routes.route('/api/user/login')
   .post(controller.login)
 
+router.route("/login/success")
+  .get(controller.googleAuthCheck)
+
 routes.route('/api/user/googleLogin')
   .get(passport.authenticate('google', { scope: ['profile'] }))
 

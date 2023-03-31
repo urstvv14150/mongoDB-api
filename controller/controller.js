@@ -37,7 +37,18 @@ async function login(req, res) {
   }  
 }
 
-async function GoogleAuthFail(req, res) {
+async function googleAuthSuccess(req, res) {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: "successfull",
+      user: req.user,
+      //   cookies: req.cookies
+    });
+  }
+}
+
+async function googleAuthFail(req, res) {
   res.json({success: false, status: 401, message: `google auth failed`})
 }
 
@@ -277,7 +288,8 @@ async function deleteArticleTypeMany(req, res) {
 module.exports = {
   register,
   login,
-  GoogleAuthFail,
+  googleAuthSuccess,
+  googleAuthFail,
   getAllUsers,
   getUserById,
   addUser,
