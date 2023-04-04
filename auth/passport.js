@@ -30,7 +30,7 @@ passport.use(new GoogleStrategy({
     clientSecret: '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',
     callbackURL: "/auth/google/callback"
   },
-  function(accessToken, refreshToken, profile, cb) {
+  function(accessToken, refreshToken, profile, done) {
     done(null, profile)
   }
 ));

@@ -3,6 +3,7 @@ const app = express()
 const cookieSession = require('cookie-session')
 const cors = require('cors')
 const routes = require('./routes/route')
+const passport = require('passport')
 
 require('dotenv').config()
 require('./auth/passport')

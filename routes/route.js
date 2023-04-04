@@ -2,6 +2,7 @@ const routes = require('express').Router()
 const controller = require('../controller/controller')
 const passport = require('passport')
 
+const CLIENT_URL = "http://localhost:3000/"
 
 routes.route('/api/user/register')
   .post(controller.register)
@@ -9,14 +10,20 @@ routes.route('/api/user/register')
 routes.route('/api/user/login')
   .post(controller.login)
 
-router.route("/api/googleLogin/success")
+routes.route("/api/googleLogin/success")
   .get(controller.googleAuthSuccess)
 
 routes.route('/api/user/googleLogin')
   .get(passport.authenticate('google', { scope: ['profile'] }))
 
-  routes.route('/auth/google/callback')
-  .get(passport.authenticate('google', { successRedirect: 'http://localhost:3000/', failureRedirect: controller.GoogleAuthFail }))
+routes.route('/logout')
+.get((req, res) => {
+  req.logout();
+  res.redirect(CLIENT_URL);
+})
+
+routes.route('/auth/google/callback')
+.get(passport.authenticate('google', { successRedirect: CLIENT_URL, failureRedirect: controller.googleAuthFail }))
 
 routes.route('/api/users/all')
   .get(passport.authenticate("jwt", {session: false}), controller.getAllUsers)
