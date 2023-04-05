@@ -28,7 +28,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
     clientID: '674252792349-jpl78fpvl2qdbb45i1fukdr0pidrhs5p.apps.googleusercontent.com',
     clientSecret: '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',
-    callbackURL: "/auth/google/callback"
+    callbackURL: "https://mongo-db-api-delta.vercel.app/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     done(null, profile)
