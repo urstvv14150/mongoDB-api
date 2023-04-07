@@ -21,11 +21,10 @@ app.use(passport.session())
 
 app.use(cors(
   {
-    origin: ["http://localhost:3000", "https://memories-two-iota.vercel.app" ],
-    methods: "GET,POST,PUT,DELETE",
+    origin: true,
+    methods: "GET,POST,PUT,DELETE, OPTIONS",
     credentials:true,
-    allowedHeaders: ["Content-Type", "Authorization","Access-Control-Allow-Headers"]
-
+    allowedHeaders: ["origin", "content-type", "accept", "access-control-allow-credentials"] 
   }
 ))
 app.use(express.json())
