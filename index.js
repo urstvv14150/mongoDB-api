@@ -22,7 +22,7 @@ app.use(passport.session())
 app.use(cors(
   {
     origin: true,
-    methods: "GET,POST,PUT,DELETE, OPTIONS",
+    methods: "GET,POST,PUT,DELETE",
     credentials:true,
     allowedHeaders: ["origin", "content-type", "accept", "access-control-allow-credentials", "access-control-allow-origin"] 
   }
