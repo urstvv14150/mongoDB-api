@@ -24,7 +24,7 @@ app.use(cors(
     origin: ["http://localhost:3000", "https://memories-two-iota.vercel.app" ],
     methods: "GET,POST,PUT,DELETE",
     credentials:true,
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ["Content-Type", "Authorization","Access-Control-Allow-Headers"]
 
   }
 ))
