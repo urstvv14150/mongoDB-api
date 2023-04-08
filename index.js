@@ -25,7 +25,7 @@ app.use(cors(
     optionsSuccessStatus: 200,
     methods: "GET,POST,PUT,DELETE,OPTIONS",
     credentials:true,
-    allowedHeaders: ["origin", "content-type", "accept", "access-control-allow-credentials", "access-control-allow-origin"] 
+    allowedHeaders: ["origin", "content-type", "accept", "access-control-allow-credentials"] 
   }
 ))
 app.use(express.json())
