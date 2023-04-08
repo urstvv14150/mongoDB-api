@@ -21,7 +21,7 @@ app.use(passport.session())
 
 app.use(cors(
   {
-    origin: ["http://localhost:3000", "https://memories-two-iota.vercel.app"],
+    origin: ["https://memories-two-iota.vercel.app", "http://localhost:3000", "https://mongo-db-api-delta.vercel.app"],
     optionsSuccessStatus: 200,
     methods: "GET,POST,PUT,DELETE,OPTIONS",
     credentials:true,
