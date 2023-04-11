@@ -28,10 +28,38 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
     clientID: '674252792349-jpl78fpvl2qdbb45i1fukdr0pidrhs5p.apps.googleusercontent.com',
     clientSecret: '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',
-    callbackURL: "https://mongo-db-api-delta.vercel.app/auth/google/callback"
+    // callbackURL: "https://mongo-db-api-delta.vercel.app/auth/google/callback"
+    callbackURL: "http://localhost:5050/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    done(null, profile)
+    Users.findOne({googleId: profile.id}, async function (err, user) {
+      if(user) {
+        const updatedUser = {
+          googleId: profile.id,
+          username: profile.displayName,
+          email: profile.emails[0].value,
+          picUrl: profile.photos[0].value,
+          sercet: accessToken
+        }
+        await Users.findOneAndUpdate(
+          { _id: user.id },
+          { $set: updatedUser }          
+        ).then((result) => {
+          return done(err, result)
+        })        
+      }else {
+        const newUser = new Users({
+          googleId: profile.id,
+          username: profile.displayName,
+          email: profile.emails[0].value,
+          picUrl: profile.photos[0].value,
+          sercet: accessToken
+        })
+        newUser.save().then((result) => {
+          return done(err, result)
+        })
+      }
+    })    
   }
 ));
 

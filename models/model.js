@@ -4,7 +4,11 @@ const moment = require('moment')
 
 const users_model = new Schema({
   email: {type: String, required: true, default: ""},
-  password: {type: String, required: true, default: ""},
+  password: {type: String},
+  googleId: {type: String},
+  username: {type: String},
+  picUrl: {type: String},
+  sercet: {type: String},
   createdAt: {type: Date, default: () => moment().format(), immutable: true},
   updatedAt: {type: Date, default: () => moment().format()}
 })

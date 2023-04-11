@@ -2,7 +2,6 @@ const routes = require('express').Router()
 const controller = require('../controller/controller')
 const passport = require('passport')
 
-const CLIENT_URL = "https://memories-two-iota.vercel.app"
 
 routes.route('/api/user/register')
   .post(controller.register)
@@ -10,20 +9,17 @@ routes.route('/api/user/register')
 routes.route('/api/user/login')
   .post(controller.login)
 
-routes.route("/api/googleLogin/success")
-  .get(controller.googleAuthSuccess)
+// routes.route("/api/googleLogin/success")
+//   .get(controller.googleAuthSuccess)
 
 routes.route('/api/user/googleLogin')
-  .get(passport.authenticate('google', { scope: ['profile'] }))
+  .get(passport.authenticate('google', { scope: ['profile', 'email'] }))
 
 routes.route('/logout')
-.get((req, res) => {
-  req.logout();
-  res.redirect(CLIENT_URL);
-})
+.get(controller.logout)
 
 routes.route('/auth/google/callback')
-.get(passport.authenticate('google', { successRedirect: CLIENT_URL, failureRedirect: controller.googleAuthFail }))
+.get(passport.authenticate('google', {failureRedirect: controller.googleAuthFail}), controller.googleAuthCallback)
 
 routes.route('/api/users/all')
   .get(passport.authenticate("jwt", {session: false}), controller.getAllUsers)

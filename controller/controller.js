@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 // for process.env.secret_key
 
+// const CLIENT_URL = "https://memories-two-iota.vercel.app"
+const CLIENT_URL = "http://localhost:3000"
+
 async function register(req, res) {
   try {
     if(!req.body) return res.status(400).json("Post Data is invalid")
@@ -37,20 +40,32 @@ async function login(req, res) {
   }  
 }
 
-async function googleAuthSuccess(req, res) {
-  console.log('req.user:', req.user);
-  console.log('req.cookie:', req.cookie);
-  if (req.user) {
-    
-    res.status(200).json({
-      success: true,
-      message: "successfull",
-      user: req.user,
-      
-      //   cookies: req.cookies
-    });
-  }
+async function logout(req, res) {
+  req.logout();
+  res.redirect(CLIENT_URL);
 }
+
+// async function googleAuthSuccess(req, res) {
+//   console.log('req:', req);
+//   console.log('req.cookie:', req.cookie);
+//   if (req.user) {
+    
+//     res.status(200).json({
+//       success: true,
+//       message: "successfull",
+//       user: req.user,
+      
+//       //   cookies: req.cookies
+//     });
+//   }
+// }
+
+async function googleAuthCallback(req, res) {  
+  const payload = req.user
+  const token = jwt.sign({payload},  process.env.secret_key, {expiresIn: 60*60})
+  res.redirect(`${CLIENT_URL}/loginSuccess?email=${req.user.email}&username=${req.user.username}&picUrl=${req.user.picUrl}&token=${token}`)
+}
+
 
 async function googleAuthFail(req, res) {
   res.json({success: false, status: 401, message: `google auth failed`})
@@ -292,7 +307,9 @@ async function deleteArticleTypeMany(req, res) {
 module.exports = {
   register,
   login,
-  googleAuthSuccess,
+  logout,
+  // googleAuthSuccess,
+  googleAuthCallback,
   googleAuthFail,
   getAllUsers,
   getUserById,
