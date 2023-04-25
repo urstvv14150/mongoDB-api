@@ -24,7 +24,7 @@ app.use(cors(
   {
     origin: ["https://memories-two-iota.vercel.app", "http://localhost:3000", "https://mongo-db-api-delta.vercel.app"],
     optionsSuccessStatus: 200,
-    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    methods: "GET,POST,PUT,DELETE",
     credentials:true,
     allowedHeaders: ["origin", "content-type", "authorization", "accept", "access-control-allow-credentials"] 
   }
