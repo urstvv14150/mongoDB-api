@@ -5,8 +5,8 @@ const { authRole } = require("../auth/authRole")
 require('dotenv').config()
 // for process.env.secret_key
 
-// const CLIENT_URL = "https://memories-two-iota.vercel.app"
-const CLIENT_URL = "http://localhost:3000"
+const CLIENT_URL = "https://memories-two-iota.vercel.app"
+// const CLIENT_URL = "http://localhost:3000"
 
 async function register(req, res) {
   try {    
