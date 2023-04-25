@@ -30,8 +30,8 @@ passport.use(new JwtStrategy(
 passport.use(new GoogleStrategy({
     clientID: '674252792349-jpl78fpvl2qdbb45i1fukdr0pidrhs5p.apps.googleusercontent.com',
     clientSecret: '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',
-    // callbackURL: "https://mongo-db-api-delta.vercel.app/auth/google/callback"
-    callbackURL: "http://localhost:5050/auth/google/callback"
+    callbackURL: "https://mongo-db-api-delta.vercel.app/auth/google/callback"
+    // callbackURL: "http://localhost:5050/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     Users.findOne({googleId: profile.id}, async function (err, user) {
@@ -68,8 +68,8 @@ passport.use(new GoogleStrategy({
 passport.use(new GithubStrategy({
     clientID: '970a6df1b4b8be2e9bcc',
     clientSecret: 'ecb5ad5efd0901d065eb52788e3250b627545dbc',
-    // callbackURL: "https://mongo-db-api-delta.vercel.app/auth/github/callback"
-    callbackURL: "http://localhost:5050/auth/github/callback"
+    callbackURL: "https://mongo-db-api-delta.vercel.app/auth/github/callback"
+    // callbackURL: "http://localhost:5050/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {    
     // console.log(profile);
@@ -106,8 +106,8 @@ passport.use(new GithubStrategy({
 passport.use(new FacebookStrategy({
   clientID: '2517923115032307',
   clientSecret: 'daba8d060dad031784648661c9dde48c',
-  // callbackURL: "https://mongo-db-api-delta.vercel.app/auth/facebook/callback"
-  callbackURL: "http://localhost:5050/auth/facebook/callback"
+  callbackURL: "https://mongo-db-api-delta.vercel.app/auth/facebook/callback"
+  // callbackURL: "http://localhost:5050/auth/facebook/callback"
 },
 function(accessToken, refreshToken, profile, done) {  
   // console.log(profile)  
